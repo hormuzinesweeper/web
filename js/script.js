@@ -33,7 +33,7 @@
         modal: document.getElementById('gameModal'),
         animationContainer: document.getElementById('animationContainer'),
         closeModal: document.getElementById('closeModal'),
-        diffButtons: document.querySelectorAll('.diff-btn')
+        gameHeader: document.querySelector('.game-header')
     };
 
     function init() {
@@ -48,19 +48,16 @@
         elements.faceBtnTop.addEventListener('click', resetGame);
         elements.closeModal.addEventListener('click', closeModal);
 
-        elements.diffButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const level = btn.dataset.level;
-                elements.diffButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+        elements.gameHeader.addEventListener('click', (e) => {
+            if (e.target.classList.contains('diff-btn')) {
+                const level = e.target.dataset.level;
+                document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
                 startGame(level);
-            });
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                setLanguage(btn.dataset.lang);
-            });
+            }
+            if (e.target.classList.contains('lang-btn')) {
+                setLanguage(e.target.dataset.lang);
+            }
         });
 
         elements.board.addEventListener('mousedown', handleMouseDown);
