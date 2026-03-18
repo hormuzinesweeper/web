@@ -852,8 +852,14 @@ function initI18n() {
                 game.touchTimer = null;
             }
             game.isDragging = true;
-            elements.board.scrollLeft = game.scrollStartX - deltaX;
-            elements.board.scrollTop = game.scrollStartY - deltaY;
+            
+            const newScrollLeft = game.scrollStartX - deltaX;
+            const maxScrollLeft = elements.board.scrollWidth - elements.board.clientWidth;
+            elements.board.scrollLeft = Math.max(0, Math.min(newScrollLeft, maxScrollLeft));
+            
+            const newScrollTop = game.scrollStartY - deltaY;
+            const maxScrollTop = elements.board.scrollHeight - elements.board.clientHeight;
+            elements.board.scrollTop = Math.max(0, Math.min(newScrollTop, maxScrollTop));
         }
     }
 
