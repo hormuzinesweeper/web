@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>霍尔木兹海峡扫雷</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="game-container">
+            <h1 class="game-title">霍尔木兹扫雷</h1>
+            <header class="game-header">
+            <div class="header-panel">
+                <div class="difficulty-selector">
+                    <button class="diff-btn active" data-level="beginner">初级</button>
+                    <button class="diff-btn" data-level="intermediate">中级</button>
+                    <button class="diff-btn" data-level="expert">高级</button>
+                </div>
+                <div class="face-btn" id="faceBtn">😊</div>
+            </div>
+            <div class="game-info">
+                <div class="counter" id="mineCounter">010</div>
+                <div class="face-btn big-face" id="faceBtnTop">😊</div>
+                <div class="counter" id="timer">000</div>
+            </div>
+        </header>
+        
+        <div class="game-board" id="gameBoard">
+        </div>
+    </div>
+
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <div class="animation-container" id="animationContainer">
+            </div>
+            <button class="close-btn" id="closeModal">关闭</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
