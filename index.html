@@ -840,25 +840,23 @@ function initI18n() {
     }
 
     function handleTouchMove(e) {
-        if (!game.touchStartCell) return;
-        
         const touch = e.touches[0];
         const deltaX = touch.clientX - game.dragStartX;
         const deltaY = touch.clientY - game.dragStartY;
         
-        if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
-            if (game.touchTimer) {
+        if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+            if (game.touchTimer && !game.isDragging) {
                 clearTimeout(game.touchTimer);
                 game.touchTimer = null;
             }
             game.isDragging = true;
             
             const maxScrollLeft = Math.max(0, elements.board.scrollWidth - elements.board.clientWidth);
-            const newScrollLeft = game.scrollStartX + deltaX;
+            const newScrollLeft = game.scrollStartX - deltaX;
             elements.board.scrollLeft = Math.max(0, Math.min(newScrollLeft, maxScrollLeft));
             
             const maxScrollTop = Math.max(0, elements.board.scrollHeight - elements.board.clientHeight);
-            const newScrollTop = game.scrollStartY + deltaY;
+            const newScrollTop = game.scrollStartY - deltaY;
             elements.board.scrollTop = Math.max(0, Math.min(newScrollTop, maxScrollTop));
         }
     }
