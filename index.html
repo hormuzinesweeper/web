@@ -751,7 +751,12 @@ function initI18n() {
         touchMode: 'dig',
         touchTimer: null,
         touchStartCell: null,
-        longPressDelay: 500
+        longPressDelay: 500,
+        isDragging: false,
+        dragStartX: 0,
+        dragStartY: 0,
+        scrollStartX: 0,
+        scrollStartY: 0
     };
 
     const elements = {
@@ -797,6 +802,7 @@ function initI18n() {
         elements.board.addEventListener('contextmenu', e => e.preventDefault());
 
         elements.board.addEventListener('touchstart', handleTouchStart, { passive: false });
+        elements.board.addEventListener('touchmove', handleTouchMove, { passive: false });
         elements.board.addEventListener('touchend', handleTouchEnd, { passive: false });
         elements.board.addEventListener('touchcancel', handleTouchCancel, { passive: false });
     }
@@ -808,13 +814,17 @@ function initI18n() {
 
     function handleTouchStart(e) {
         if (game.gameOver) return;
-        e.preventDefault();
         
         const touch = e.touches[0];
+        game.dragStartX = touch.clientX;
+        game.dragStartY = touch.clientY;
+        
         const cell = document.elementFromPoint(touch.clientX, touch.clientY);
         
         if (cell && cell.classList.contains('cell')) {
             game.touchStartCell = cell;
+            game.scrollStartX = elements.board.scrollLeft;
+            game.scrollStartY = elements.board.scrollTop;
             setFace('😮');
             
             game.touchTimer = setTimeout(() => {
@@ -829,6 +839,24 @@ function initI18n() {
         }
     }
 
+    function handleTouchMove(e) {
+        if (!game.touchStartCell) return;
+        
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - game.dragStartX;
+        const deltaY = touch.clientY - game.dragStartY;
+        
+        if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+            if (game.touchTimer) {
+                clearTimeout(game.touchTimer);
+                game.touchTimer = null;
+            }
+            game.isDragging = true;
+            elements.board.scrollLeft = game.scrollStartX - deltaX;
+            elements.board.scrollTop = game.scrollStartY - deltaY;
+        }
+    }
+
     function handleTouchEnd(e) {
         if (game.gameOver) return;
         
@@ -839,7 +867,7 @@ function initI18n() {
         
         setFace('😊');
         
-        if (game.touchStartCell) {
+        if (game.touchStartCell && !game.isDragging) {
             const row = parseInt(game.touchStartCell.dataset.row);
             const col = parseInt(game.touchStartCell.dataset.col);
             
@@ -851,6 +879,7 @@ function initI18n() {
         }
         
         game.touchStartCell = null;
+        game.isDragging = false;
     }
 
     function handleTouchCancel(e) {
