@@ -17,19 +17,21 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background-image: url('./hormuz_mine_map.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 20px;
+    overflow-x: auto;
 }
 
 .game-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: min-content;
 }
 
 .game-title {
@@ -54,7 +56,7 @@ body {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+    overflow: visible;
     min-width: min-content;
     background-color: rgba(192, 192, 192, 0.95);
     display: flex;
@@ -194,14 +196,14 @@ body {
     }
     
     .cell {
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
         font-size: 14px;
     }
     
     .cell.revealed.number {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         margin: 2px;
     }
     
@@ -212,10 +214,10 @@ body {
     .cell.flagged::after {
         font-size: 12px;
     }
-    
+
     .game-board {
-        grid-template-columns: repeat(var(--cols, 8), 24px);
-        grid-template-rows: repeat(var(--rows, 8), 24px);
+        grid-template-columns: repeat(var(--cols, 8), 28px);
+        grid-template-rows: repeat(var(--rows, 8), 28px);
     }
     
     .counter {
@@ -261,6 +263,9 @@ body {
     border: 4px solid rgba(128, 128, 128, 0.8);
     border-radius: 4px;
     position: relative;
+    overflow: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 .cell {
