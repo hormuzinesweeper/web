@@ -818,13 +818,13 @@ function initI18n() {
         const touch = e.touches[0];
         game.dragStartX = touch.clientX;
         game.dragStartY = touch.clientY;
+        game.scrollStartX = elements.board.scrollLeft;
+        game.scrollStartY = elements.board.scrollTop;
         
         const cell = document.elementFromPoint(touch.clientX, touch.clientY);
         
         if (cell && cell.classList.contains('cell')) {
             game.touchStartCell = cell;
-            game.scrollStartX = elements.board.scrollLeft;
-            game.scrollStartY = elements.board.scrollTop;
             setFace('😮');
             
             game.touchTimer = setTimeout(() => {
@@ -853,12 +853,12 @@ function initI18n() {
             }
             game.isDragging = true;
             
+            const maxScrollLeft = Math.max(0, elements.board.scrollWidth - elements.board.clientWidth);
             const newScrollLeft = game.scrollStartX - deltaX;
-            const maxScrollLeft = elements.board.scrollWidth - elements.board.clientWidth;
             elements.board.scrollLeft = Math.max(0, Math.min(newScrollLeft, maxScrollLeft));
             
+            const maxScrollTop = Math.max(0, elements.board.scrollHeight - elements.board.clientHeight);
             const newScrollTop = game.scrollStartY - deltaY;
-            const maxScrollTop = elements.board.scrollHeight - elements.board.clientHeight;
             elements.board.scrollTop = Math.max(0, Math.min(newScrollTop, maxScrollTop));
         }
     }
