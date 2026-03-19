@@ -166,25 +166,7 @@ body {
     justify-content: center;
 }
 
-.nav-link {
-    padding: 8px 16px;
-    background: #c0c0c0;
-    border: 2px solid;
-    border-color: #dfdfdf #808080 #808080 #dfdfdf;
-    border-radius: 4px;
-    text-decoration: none;
-    color: #000;
-    font-size: 14px;
-    transition: all 0.1s;
-}
 
-.nav-link:hover {
-    background: #d0d0d0;
-}
-
-.nav-link:active {
-    border-color: #808080 #dfdfdf #dfdfdf #808080;
-}
 
 .game-header {
     background: rgba(192, 192, 192, 0.95);
@@ -750,7 +732,7 @@ body {
             <p class="game-description" style="display:none;">霍尔木兹海峡扫雷是一款将经典扫雷玩法与地缘政治模拟相结合的网页游戏。玩家在模拟霍尔木兹海峡的水域中导航，通过扫雷逻辑体验伊朗导弹威胁与石油运输安全的战略博弈。游戏支持8种语言，适合对地缘政治和国际局势感兴趣的用户。</p>
             <nav class="nav-bar">
                 <a href="news.html" class="nav-link" data-i18="newsLink">📊 最新情报</a>
-                <a href="Mining.html" class="nav-link" data-i18="aboutLink">📖 了解更多</a>
+
             </nav>
             <header class="game-header">
                 <div class="header-panel">
@@ -807,14 +789,14 @@ const translations = {
         close: '关闭',
         failTitle: '💥 川普被炸',
         failSubtitle: '任务失败，川普被炸',
-        successTitle: '🚢 油轮通过海峡',
+        successTitle: '🚢 任务胜利 油轮前进',
         gameOver: '游戏结束',
         gameWin: '胜利！',
         language: '语言',
         modeDig: '👆 挖',
         modeFlag: '🚩 旗',
         newsLink: '📊 最新情报',
-        aboutLink: '📖 了解更多'
+
     },
     en: {
         title: 'Hormuz Minesweeper',
@@ -826,14 +808,14 @@ const translations = {
         close: 'Close',
         failTitle: '💥 Trump Bombed',
         failSubtitle: 'Mission Failed, Trump Bombed',
-        successTitle: '🚢 Tanker Crossed',
+        successTitle: '🚢 Mission Complete! Tanker Forward!',
         gameOver: 'Game Over',
         gameWin: 'You Win!',
         language: 'Language',
         modeDig: '👆 Dig',
         modeFlag: '🚩 Flag',
         newsLink: '📊 Latest Intel',
-        aboutLink: '📖 Learn More'
+
     },
     ja: {
         title: 'ホルムズマインスイーパー',
@@ -845,14 +827,14 @@ const translations = {
         close: '閉じる',
         failTitle: '💥 トループ炸死',
         failSubtitle: '任務失敗、トループ炸死',
-        successTitle: '🚢 タンカー海峡通過',
+        successTitle: '🚢 任務完了！タンカー前進！',
         gameOver: 'ゲームオーバー',
         gameWin: '勝利！',
         language: '言語',
         modeDig: '👆 掘',
         modeFlag: '🚩 旗',
         newsLink: '📊 最新インテリジェンス',
-        aboutLink: '📖 詳しく見る'
+
     },
     ko: {
         title: '호르무즈 지뢰 찾기',
@@ -864,14 +846,14 @@ const translations = {
         close: '닫기',
         failTitle: '💥 트럼프 폭격',
         failSubtitle: '임무 실패, 트럼프 폭격',
-        successTitle: '🚢 유조선 해협 통과',
+        successTitle: '🚢 임무 완료! 유조선 전진!',
         gameOver: '게임 오버',
         gameWin: '승리!',
         language: '언어',
         modeDig: '👆 파',
         modeFlag: '🚩 깃발',
         newsLink: '📊 최신 정보',
-        aboutLink: '📖 자세히 보기'
+
     },
     fr: {
         title: 'Démineur de Hormuz',
@@ -883,14 +865,14 @@ const translations = {
         close: 'Fermer',
         failTitle: '💥 Trump Bombardé',
         failSubtitle: 'Mission Ratée, Trump Bombardé',
-        successTitle: '🚢 Pétrolier Traversé',
+        successTitle: '🚢 Mission Accomplie! Pétrolier en Avant!',
         gameOver: 'Perdu',
         gameWin: 'Gagné!',
         language: 'Langue',
         modeDig: '👆 Creuser',
         modeFlag: '🚩 Drapeau',
         newsLink: '📊 Dernières Infos',
-        aboutLink: '📖 En Savoir Plus'
+
     },
     es: {
         title: 'Buscaminas de Hormuz',
@@ -902,14 +884,14 @@ const translations = {
         close: 'Cerrar',
         failTitle: '💥 Trump Bombardead',
         failSubtitle: 'Misión Fallida, Trump Bombardead',
-        successTitle: '🚢 Petrolero Cruzado',
+        successTitle: '🚢 ¡Misión Completada! Petrolero Adelante!',
         gameOver: 'Fin del Juego',
         gameWin: '¡Ganaste!',
         language: 'Idioma',
         modeDig: '👆 Cavar',
         modeFlag: '🚩 Bandera',
         newsLink: '📊 Últimas Noticias',
-        aboutLink: '📖 Saber Más'
+
     },
     ar: {
         title: 'لعبة الغوم في هرمز',
@@ -921,14 +903,14 @@ const translations = {
         close: 'إغلاق',
         failTitle: '💥 ترمب ينفجر',
         failSubtitle: 'فشلت المهمة، ترمب ينفجر',
-        successTitle: '🚢 ناقلة تعبر المضيق',
+        successTitle: '🚢 اكتملت المهمة! ناقلة إلى الأمام!',
         gameOver: 'انتهت اللعبة',
         gameWin: 'فزت!',
         language: 'اللغة',
         modeDig: '👆 حفر',
         modeFlag: '🚩 علم',
         newsLink: '📊 آخر المعلومات',
-        aboutLink: '📖 تعرف على المزيد'
+
     },
     fa: {
         title: 'مین‌گذاری هرمز',
@@ -940,14 +922,14 @@ const translations = {
         close: 'بستن',
         failTitle: '💥 ترامپ بمب‌گذاری شد',
         failSubtitle: 'ماموریت شکست خورد، ترامپ بمب‌گذاری شد',
-        successTitle: '🚢 نفتکش از تنگه عبور کرد',
+        successTitle: '🚢 ماموریت انجام شد! نفتکش جلو!',
         gameOver: 'بازی تمام شد',
         gameWin: 'برنده شدید!',
         language: 'زبان',
         modeDig: '👆 کاوش',
         modeFlag: '🚩 پرچم',
         newsLink: '📊 آخرین اطلاعات',
-        aboutLink: '📖 بیشتر بدانید'
+
     }
 };
 
@@ -1438,10 +1420,13 @@ function initI18n() {
             elements.animationContainer.appendChild(failVideoDiv);
         } else {
             playVictorySound();
-            const successDiv = document.createElement('div');
-            successDiv.className = 'success-animation';
-            successDiv.innerHTML = '<div class="text text-glow">🎺 ' + t('successTitle') + ' 🎺</div><div class="ship"></div><div class="waves"></div>';
-            elements.animationContainer.appendChild(successDiv);
+            const successVideoDiv = document.createElement('div');
+            successVideoDiv.className = 'fail-video';
+            successVideoDiv.innerHTML = `
+                <video id="successVideo" src="./success.mp4" autoplay loop></video>
+                <div class="subtitle">${t('successTitle')}</div>
+            `;
+            elements.animationContainer.appendChild(successVideoDiv);
         }
 
         elements.modal.classList.add('show');
