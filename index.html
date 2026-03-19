@@ -1448,9 +1448,13 @@ function initI18n() {
     }
     
     let victoryInterval = null;
+    let victoryAudioCtx = null;
     
     function playVictorySound() {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (victoryAudioCtx) {
+            victoryAudioCtx.close();
+        }
+        victoryAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
         const fanfare = [
             { note: 392.00, dur: 0.3 },   
@@ -1465,12 +1469,12 @@ function initI18n() {
             { note: 1174.66, dur: 0.9 },  
         ];
         
-        let startTime = audioCtx.currentTime + 0.1;
+        let startTime = victoryAudioCtx.currentTime + 0.1;
         let totalDuration = 0;
         
         fanfare.forEach(({ note, dur }) => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
+            const osc = victoryAudioCtx.createOscillator();
+            const gain = victoryAudioCtx.createGain();
             
             osc.type = 'sawtooth';
             osc.frequency.setValueAtTime(note, startTime);
@@ -1483,7 +1487,7 @@ function initI18n() {
             gain.gain.linearRampToValueAtTime(0, startTime + dur);
             
             osc.connect(gain);
-            gain.connect(audioCtx.destination);
+            gain.connect(victoryAudioCtx.destination);
             
             osc.start(startTime);
             osc.stop(startTime + dur);
@@ -1492,15 +1496,15 @@ function initI18n() {
             totalDuration += dur;
         });
         
-        const bassOsc = audioCtx.createOscillator();
-        const bassGain = audioCtx.createGain();
+        const bassOsc = victoryAudioCtx.createOscillator();
+        const bassGain = victoryAudioCtx.createGain();
         bassOsc.type = 'sine';
-        bassOsc.frequency.setValueAtTime(65.41, audioCtx.currentTime);
-        bassGain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        bassOsc.frequency.setValueAtTime(65.41, victoryAudioCtx.currentTime);
+        bassGain.gain.setValueAtTime(0.15, victoryAudioCtx.currentTime);
         bassOsc.connect(bassGain);
-        bassGain.connect(audioCtx.destination);
-        bassOsc.start(audioCtx.currentTime + 0.1);
-        bassOsc.stop(audioCtx.currentTime + totalDuration);
+        bassGain.connect(victoryAudioCtx.destination);
+        bassOsc.start(victoryAudioCtx.currentTime + 0.1);
+        bassOsc.stop(victoryAudioCtx.currentTime + totalDuration);
         
         victoryInterval = setInterval(() => {
             if (!elements.modal.classList.contains('show')) {
@@ -1509,12 +1513,12 @@ function initI18n() {
                 return;
             }
             
-            const loopStart = audioCtx.currentTime + 0.05;
+            const loopStart = victoryAudioCtx.currentTime + 0.05;
             let loopTime = loopStart;
             
             fanfare.forEach(({ note, dur }) => {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
+                const osc = victoryAudioCtx.createOscillator();
+                const gain = victoryAudioCtx.createGain();
                 
                 osc.type = 'sawtooth';
                 osc.frequency.setValueAtTime(note, loopTime);
@@ -1527,7 +1531,7 @@ function initI18n() {
                 gain.gain.linearRampToValueAtTime(0, loopTime + dur);
                 
                 osc.connect(gain);
-                gain.connect(audioCtx.destination);
+                gain.connect(victoryAudioCtx.destination);
                 
                 osc.start(loopTime);
                 osc.stop(loopTime + dur);
@@ -1535,13 +1539,13 @@ function initI18n() {
                 loopTime += dur;
             });
             
-            const loopBass = audioCtx.createOscillator();
-            const loopBassGain = audioCtx.createGain();
+            const loopBass = victoryAudioCtx.createOscillator();
+            const loopBassGain = victoryAudioCtx.createGain();
             loopBass.type = 'sine';
             loopBass.frequency.setValueAtTime(65.41, loopStart);
             loopBassGain.gain.setValueAtTime(0.12, loopStart);
             loopBass.connect(loopBassGain);
-            loopBassGain.connect(audioCtx.destination);
+            loopBassGain.connect(victoryAudioCtx.destination);
             loopBass.start(loopStart);
             loopBass.stop(loopStart + totalDuration);
         }, totalDuration * 1000);
@@ -1551,6 +1555,10 @@ function initI18n() {
         if (victoryInterval) {
             clearInterval(victoryInterval);
             victoryInterval = null;
+        }
+        if (victoryAudioCtx) {
+            victoryAudioCtx.close();
+            victoryAudioCtx = null;
         }
     }
 
