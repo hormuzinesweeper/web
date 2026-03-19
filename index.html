@@ -158,6 +158,34 @@ body {
     align-items: center;
 }
 
+.nav-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-link {
+    padding: 8px 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #808080 #808080 #dfdfdf;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    transition: all 0.1s;
+}
+
+.nav-link:hover {
+    background: #d0d0d0;
+}
+
+.nav-link:active {
+    border-color: #808080 #dfdfdf #dfdfdf #808080;
+}
+
 .game-header {
     background: rgba(192, 192, 192, 0.95);
     padding: 10px;
@@ -293,6 +321,15 @@ body {
     .game-title {
         font-size: 20px;
         padding: 6px 15px;
+    }
+    
+    .nav-bar {
+        margin-bottom: 8px;
+    }
+    
+    .nav-link {
+        padding: 6px 12px;
+        font-size: 12px;
     }
     
     .cell {
@@ -695,6 +732,15 @@ body {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
 }
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 2px 2px 4px #000; }
+    50% { text-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700; }
+}
+
+.text-glow {
+    animation: textPulse 1s ease-in-out infinite, textGlow 0.5s ease-in-out infinite;
+}
     </style>
 </head>
 <body>
@@ -702,6 +748,10 @@ body {
         <div class="game-container">
             <h1 class="game-title" data-i18="title">霍尔木兹扫雷</h1>
             <p class="game-description" style="display:none;">霍尔木兹海峡扫雷是一款将经典扫雷玩法与地缘政治模拟相结合的网页游戏。玩家在模拟霍尔木兹海峡的水域中导航，通过扫雷逻辑体验伊朗导弹威胁与石油运输安全的战略博弈。游戏支持8种语言，适合对地缘政治和国际局势感兴趣的用户。</p>
+            <nav class="nav-bar">
+                <a href="news.html" class="nav-link" data-i18="newsLink">📊 最新情报</a>
+                <a href="Mining.html" class="nav-link" data-i18="aboutLink">📖 了解更多</a>
+            </nav>
             <header class="game-header">
                 <div class="header-panel">
                     <div class="top-row">
@@ -762,7 +812,9 @@ const translations = {
         gameWin: '胜利！',
         language: '语言',
         modeDig: '👆 挖',
-        modeFlag: '🚩 旗'
+        modeFlag: '🚩 旗',
+        newsLink: '📊 最新情报',
+        aboutLink: '📖 了解更多'
     },
     en: {
         title: 'Hormuz Minesweeper',
@@ -779,7 +831,9 @@ const translations = {
         gameWin: 'You Win!',
         language: 'Language',
         modeDig: '👆 Dig',
-        modeFlag: '🚩 Flag'
+        modeFlag: '🚩 Flag',
+        newsLink: '📊 Latest Intel',
+        aboutLink: '📖 Learn More'
     },
     ja: {
         title: 'ホルムズマインスイーパー',
@@ -796,7 +850,9 @@ const translations = {
         gameWin: '勝利！',
         language: '言語',
         modeDig: '👆 掘',
-        modeFlag: '🚩 旗'
+        modeFlag: '🚩 旗',
+        newsLink: '📊 最新インテリジェンス',
+        aboutLink: '📖 詳しく見る'
     },
     ko: {
         title: '호르무즈 지뢰 찾기',
@@ -813,7 +869,9 @@ const translations = {
         gameWin: '승리!',
         language: '언어',
         modeDig: '👆 파',
-        modeFlag: '🚩 깃발'
+        modeFlag: '🚩 깃발',
+        newsLink: '📊 최신 정보',
+        aboutLink: '📖 자세히 보기'
     },
     fr: {
         title: 'Démineur de Hormuz',
@@ -830,7 +888,9 @@ const translations = {
         gameWin: 'Gagné!',
         language: 'Langue',
         modeDig: '👆 Creuser',
-        modeFlag: '🚩 Drapeau'
+        modeFlag: '🚩 Drapeau',
+        newsLink: '📊 Dernières Infos',
+        aboutLink: '📖 En Savoir Plus'
     },
     es: {
         title: 'Buscaminas de Hormuz',
@@ -847,7 +907,9 @@ const translations = {
         gameWin: '¡Ganaste!',
         language: 'Idioma',
         modeDig: '👆 Cavar',
-        modeFlag: '🚩 Bandera'
+        modeFlag: '🚩 Bandera',
+        newsLink: '📊 Últimas Noticias',
+        aboutLink: '📖 Saber Más'
     },
     ar: {
         title: 'لعبة الغوم في هرمز',
@@ -864,7 +926,9 @@ const translations = {
         gameWin: 'فزت!',
         language: 'اللغة',
         modeDig: '👆 حفر',
-        modeFlag: '🚩 علم'
+        modeFlag: '🚩 علم',
+        newsLink: '📊 آخر المعلومات',
+        aboutLink: '📖 تعرف على المزيد'
     },
     fa: {
         title: 'مین‌گذاری هرمز',
@@ -881,7 +945,9 @@ const translations = {
         gameWin: 'برنده شدید!',
         language: 'زبان',
         modeDig: '👆 کاوش',
-        modeFlag: '🚩 پرچم'
+        modeFlag: '🚩 پرچم',
+        newsLink: '📊 آخرین اطلاعات',
+        aboutLink: '📖 بیشتر بدانید'
     }
 };
 
@@ -1371,13 +1437,121 @@ function initI18n() {
             `;
             elements.animationContainer.appendChild(failVideoDiv);
         } else {
+            playVictorySound();
             const successDiv = document.createElement('div');
             successDiv.className = 'success-animation';
-            successDiv.innerHTML = '<div class="text">🎉 ' + t('successTitle') + ' 🎉</div><div class="ship"></div><div class="waves"></div>';
+            successDiv.innerHTML = '<div class="text text-glow">🎺 ' + t('successTitle') + ' 🎺</div><div class="ship"></div><div class="waves"></div>';
             elements.animationContainer.appendChild(successDiv);
         }
 
         elements.modal.classList.add('show');
+    }
+    
+    let victoryInterval = null;
+    
+    function playVictorySound() {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        const fanfare = [
+            { note: 392.00, dur: 0.3 },   
+            { note: 523.25, dur: 0.3 },   
+            { note: 659.25, dur: 0.3 },   
+            { note: 783.99, dur: 0.3 },   
+            { note: 1046.50, dur: 0.6 },  
+            { note: 783.99, dur: 0.15 },  
+            { note: 1046.50, dur: 0.6 },  
+            { note: 783.99, dur: 0.15 },  
+            { note: 1046.50, dur: 0.6 },  
+            { note: 1174.66, dur: 0.9 },  
+        ];
+        
+        let startTime = audioCtx.currentTime + 0.1;
+        let totalDuration = 0;
+        
+        fanfare.forEach(({ note, dur }) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(note, startTime);
+            osc.frequency.setValueAtTime(note * 1.02, startTime + 0.05);
+            osc.frequency.setValueAtTime(note, startTime + 0.1);
+            
+            gain.gain.setValueAtTime(0, startTime);
+            gain.gain.linearRampToValueAtTime(0.18, startTime + 0.05);
+            gain.gain.setValueAtTime(0.18, startTime + dur - 0.1);
+            gain.gain.linearRampToValueAtTime(0, startTime + dur);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start(startTime);
+            osc.stop(startTime + dur);
+            
+            startTime += dur;
+            totalDuration += dur;
+        });
+        
+        const bassOsc = audioCtx.createOscillator();
+        const bassGain = audioCtx.createGain();
+        bassOsc.type = 'sine';
+        bassOsc.frequency.setValueAtTime(65.41, audioCtx.currentTime);
+        bassGain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        bassOsc.connect(bassGain);
+        bassGain.connect(audioCtx.destination);
+        bassOsc.start(audioCtx.currentTime + 0.1);
+        bassOsc.stop(audioCtx.currentTime + totalDuration);
+        
+        victoryInterval = setInterval(() => {
+            if (!elements.modal.classList.contains('show')) {
+                clearInterval(victoryInterval);
+                victoryInterval = null;
+                return;
+            }
+            
+            const loopStart = audioCtx.currentTime + 0.05;
+            let loopTime = loopStart;
+            
+            fanfare.forEach(({ note, dur }) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(note, loopTime);
+                osc.frequency.setValueAtTime(note * 1.02, loopTime + 0.05);
+                osc.frequency.setValueAtTime(note, loopTime + 0.1);
+                
+                gain.gain.setValueAtTime(0, loopTime);
+                gain.gain.linearRampToValueAtTime(0.18, loopTime + 0.05);
+                gain.gain.setValueAtTime(0.18, loopTime + dur - 0.1);
+                gain.gain.linearRampToValueAtTime(0, loopTime + dur);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start(loopTime);
+                osc.stop(loopTime + dur);
+                
+                loopTime += dur;
+            });
+            
+            const loopBass = audioCtx.createOscillator();
+            const loopBassGain = audioCtx.createGain();
+            loopBass.type = 'sine';
+            loopBass.frequency.setValueAtTime(65.41, loopStart);
+            loopBassGain.gain.setValueAtTime(0.12, loopStart);
+            loopBass.connect(loopBassGain);
+            loopBassGain.connect(audioCtx.destination);
+            loopBass.start(loopStart);
+            loopBass.stop(loopStart + totalDuration);
+        }, totalDuration * 1000);
+    }
+    
+    function stopVictorySound() {
+        if (victoryInterval) {
+            clearInterval(victoryInterval);
+            victoryInterval = null;
+        }
     }
 
     function closeModal() {
@@ -1386,6 +1560,7 @@ function initI18n() {
             video.pause();
             video.currentTime = 0;
         }
+        stopVictorySound();
         elements.animationContainer.innerHTML = '';
         elements.modal.classList.remove('show');
         resetGame();
